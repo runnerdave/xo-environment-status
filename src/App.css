@@ -1,28 +1,28 @@
-.App {
+.app {
   text-align: center;
 }
 
-.App-logo {
+.app-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40px;
 }
 
-.App-footer {
+.app-footer {
   background-color: #222;
   height: 80px;
   padding: 0px;
   color: white;
 }
 
-.App-title {
+.app-title {
   font-size: 1em;
 }
 
-.App-intro {
+.app-intro {
   font-size: large;
 }
 
-.Row-spacer {
+.row-spacer {
   height: 2em;
 }
 
