@@ -56,12 +56,18 @@ class Button extends Component {
 }
 
 const Row = (props) => {
+    const buttonDivs = props.buttons.map(
+        (button) => {
+            return (
+                <div className="col-md-4"><Button text={button}/></div>
+            )
+        }
+    );
+
     return (
         <div className="row">
             <div className="col-md-2"></div>
-            <div className="col-md-3"><Button text={props.buttons[0]}/></div>
-            <div className="col-md-2"></div>
-            <div className="col-md-3"><Button text={props.buttons[1]}/></div>
+            {buttonDivs}
             <div className="col-md-2"></div>
         </div>
     )
