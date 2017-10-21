@@ -16,22 +16,7 @@ const Footer = () => {
             <h1 className="app-title">Powered by React</h1>
         </footer>
     )
-}
-
-const HistoryBlurb = (history) => {
-    return (
-        <div>
-            <ul>
-                {
-                    history.map((downtimeEvent) => {
-                        
-                        }
-                    )
-                }
-            </ul>
-        </div>
-    )
-}
+};
 
 const Row = (props) => {
     const buttonDivs = props.buttons.map(
@@ -44,20 +29,20 @@ const Row = (props) => {
 
     return (
         <div className="row">
-            <div className="col-md-2"></div>
+            <div className="col-md-2"/>
             {buttonDivs}
-            <div className="col-md-2"></div>
+            <div className="col-md-2"/>
         </div>
     )
-}
+};
 
 const SpacerRow = () => {
     return (
         <div className="row">
-            <div className="col-md-12 row-spacer"></div>
+            <div className="col-md-12 row-spacer"/>
         </div>
     )
-}
+};
 
 
 class App extends Component {
