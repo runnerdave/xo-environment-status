@@ -1,65 +1,43 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Button from './Button';
 
 const buttons = [
-                  ["OBDX SIT1", "OBDX SIT4"],
-                  ["DCO SIT1", "DCO SIT4"],
-                  ["DOCTA SIT1", "DOCTA SIT4"]
-                ];
+    ["OBDX SIT1", "OBDX SIT4"],
+    ["DCO SIT1", "DCO SIT4"],
+    ["DOCTA SIT1", "DOCTA SIT4"]
+];
 
 const Footer = () => {
     return (
-        <header className="app-footer">
+        <footer className="app-footer">
             <img src={logo} className="app-logo" alt="logo"/>
             <h1 className="app-title">Powered by React</h1>
-        </header>
+        </footer>
     )
 }
 
-
-
-class Button extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isUp: true,
-            text: props.text
-        }
-    }
-
-    timer() {
-      const timeDisplay = new Date().toLocaleTimeString();
-
-      return (
-          ` has been down since: ${timeDisplay}`
-      )
-    }
-
-    handleClick() {
-        let buttonText = this.state.text;
-        if (this.state.isUp) {
-            buttonText = this.props.text + this.timer();
-        } else {
-            buttonText = this.props.text;
-        }
-        this.setState({
-            isUp: !this.state.isUp,
-            text: buttonText
-        })
-    }
-
-    render() {
-        return <button className={`btn btn-${this.state.isUp ? 'success' : 'danger'} btn-block`}
-                       onClick={() => this.handleClick()}>{this.state.text}</button>
-    }
+const HistoryBlurb = (history) => {
+    return (
+        <div>
+            <ul>
+                {
+                    history.map((downtimeEvent) => {
+                        
+                        }
+                    )
+                }
+            </ul>
+        </div>
+    )
 }
 
 const Row = (props) => {
     const buttonDivs = props.buttons.map(
         (button) => {
             return (
-                <div className="col-md-4"><Button text={button}/></div>
+                <div className="col-md-4" key={button}><Button text={button}/></div>
             )
         }
     );
@@ -81,17 +59,26 @@ const SpacerRow = () => {
     )
 }
 
+
 class App extends Component {
+
     render() {
         return (
             <div className="app">
                 <div className="jumbotron" style={{height: '100vh'}}>
                     <div className="container-fluid">
-                        <Row buttons={buttons[0]}/>
-                        <SpacerRow/>
-                        <Row buttons={buttons[1]}/>
-                        <SpacerRow/>
-                        <Row buttons={buttons[2]}/>
+                        {
+                            buttons.map(
+                                (button) => {
+                                    return (
+                                        <div key={button.toString().split(' ')[0]}>
+                                            <Row buttons={button}/>
+                                            <SpacerRow/>
+                                        </div>
+                                    )
+                                }
+                            )
+                        }
                     </div>
                 </div>
                 <Footer/>
