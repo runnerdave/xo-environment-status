@@ -24,14 +24,14 @@
 
 .button-hover-history {
     position: absolute;
-    left: 50%;
-    top: 50%;
+    left: 30%;
+    top: 70%;
     z-index: 10;
-    color: aliceblue;
-    border: solid darkgreen;
-    background-color: cadetblue;
-    border-radius: 20px;
-    padding: 10px 15px ;
+}
+
+ul {
+    text-align: left;
+    padding: 5px;
 }
 
 .hidden {

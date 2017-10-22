@@ -1,40 +1,12 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
+import _ from 'lodash';
 import './App.css';
-import Button from './Button';
+import data from './applicationData.json';
+import Row from './Row';
+import Footer from './Footer';
+import InfoPanel from './InfoPanel';
 
-const buttons = [
-    ["OBDX SIT1", "OBDX SIT4"],
-    ["DCO SIT1", "DCO SIT4"],
-    ["DOCTA SIT1", "DOCTA SIT4"]
-];
-
-const Footer = () => {
-    return (
-        <footer className="app-footer">
-            <img src={logo} className="app-logo" alt="logo"/>
-            <h1 className="app-title">Powered by React</h1>
-        </footer>
-    )
-};
-
-const Row = (props) => {
-    const buttonDivs = props.buttons.map(
-        (button) => {
-            return (
-                <div className="col-md-4" key={button}><Button text={button}/></div>
-            )
-        }
-    );
-
-    return (
-        <div className="row">
-            <div className="col-md-2"/>
-            {buttonDivs}
-            <div className="col-md-2"/>
-        </div>
-    )
-};
+const BUTTONS_PER_ROW = 3;
 
 const SpacerRow = () => {
     return (
@@ -44,20 +16,33 @@ const SpacerRow = () => {
     )
 };
 
-
 class App extends Component {
+
+    constructor(props) {
+        super(props);
+        let panelArray = data["panels"];
+        let itemBase = _.find(panelArray, (o) => o.base);
+        this.state = {
+            buttonRows: data['buttons'],
+            basePanelTitle: _.get(itemBase, 'base.title'),
+            basePanelContent: _.get(itemBase, 'base.blurb'),
+            footerContent: data['footer']
+        };
+
+    }
 
     render() {
         return (
             <div className="app">
                 <div className="jumbotron" style={{height: '100vh'}}>
                     <div className="container-fluid">
+                        <InfoPanel title={this.state.basePanelTitle} content={this.state.basePanelContent}/>
                         {
-                            buttons.map(
-                                (button) => {
+                            getRows(this.state.buttonRows, BUTTONS_PER_ROW).map(
+                                (row) => {
                                     return (
-                                        <div key={button.toString().split(' ')[0]}>
-                                            <Row buttons={button}/>
+                                        <div key={row[0].title.toString().split(' ')[0]}>
+                                            <Row buttons={row} buttons-per-row={BUTTONS_PER_ROW}/>
                                             <SpacerRow/>
                                         </div>
                                     )
@@ -66,10 +51,28 @@ class App extends Component {
                         }
                     </div>
                 </div>
-                <Footer/>
+                <Footer title={this.state.footerContent}/>
             </div>
         );
     }
+}
+
+/**
+ * Organizes rows of buttons.
+ */
+export function getRows(list, buttonsPerRow) {
+    var matrix = [], i, k;
+
+    for (i = 0, k = -1; i < list.length; i++) {
+        if (i % buttonsPerRow === 0) {
+            k++;
+            matrix[k] = [];
+        }
+
+        matrix[k].push(list[i]);
+    }
+
+    return matrix;
 }
 
 export default App;

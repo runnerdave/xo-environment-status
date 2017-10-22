@@ -31,12 +31,20 @@ class Button extends Component {
         )
     }
 
+    formatDowntimeHistoryEvent(event) {
+        return `Down at: ${event}`;
+    }
+
     handleClick() {
         let timerValue = '';
         let downTimeEvents = this.state.downTimeEvents;
         if (this.state.isUp) {
             timerValue = Button.timer();
-            downTimeEvents.push(new Date().toLocaleTimeString());
+            downTimeEvents.push(this.formatDowntimeHistoryEvent(new Date().toLocaleTimeString()));
+        } else {
+            const lastDownTimeEvent = downTimeEvents[downTimeEvents.length - 1];
+            console.log(lastDownTimeEvent);
+            downTimeEvents[downTimeEvents.length - 1] = `${lastDownTimeEvent} - outage duration: blah`;
         }
         this.setState({
             isUp: !this.state.isUp,
@@ -66,8 +74,11 @@ class Button extends Component {
                     onMouseLeave={() => this.handleHoverOut()}>
                 {this.state.text} {this.state.timerValue}
             </button>
-            <div className={` ${this.state.showHistory ? 'button-hover-history' : 'hidden'}`}>
-                <HistoryBlurb history={this.state.downTimeEvents}/>
+            <div className={` ${this.state.showHistory ? 'button-hover-history panel panel-danger' : 'hidden'}`}>
+                <div className={'panel-heading'}>{this.props.text}</div>
+                <div className={'panel-body'}>
+                    <HistoryBlurb history={this.state.downTimeEvents}/>
+                </div>
             </div>
         </div>)
     }
