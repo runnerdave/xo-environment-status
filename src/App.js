@@ -6,7 +6,7 @@ import Row from './Row';
 import Footer from './Footer';
 import InfoPanel from './InfoPanel';
 
-const BUTTONS_PER_ROW = 3;
+const BUTTONS_PER_ROW = 2;
 
 const SpacerRow = () => {
     return (
@@ -42,7 +42,7 @@ class App extends Component {
                                 (row) => {
                                     return (
                                         <div key={row[0].title.toString().split(' ')[0]}>
-                                            <Row buttons={row} buttons-per-row={BUTTONS_PER_ROW}/>
+                                            <Row buttons={row} buttonsPerRow={BUTTONS_PER_ROW}/>
                                             <SpacerRow/>
                                         </div>
                                     )

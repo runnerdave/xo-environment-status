@@ -5,7 +5,7 @@ const Row = (props) => {
     const buttonDivs = props.buttons.map(
         (button) => {
             return (
-                <div className={`col-md-${props.buttonsPerRow}`} key={button.title}><Button text={button.title}/></div>
+                <div className={`col-md-${props.buttonsPerRow + 1}`} key={button.title}><Button text={button.title}/></div>
             )
         }
     );

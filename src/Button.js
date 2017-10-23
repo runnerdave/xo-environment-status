@@ -2,10 +2,9 @@ import Timer from './Timer';
 import React, {Component} from 'react';
 
 const HistoryBlurb = (props) => {
-    //
 
     const formatDowntimeHistoryEvent = (event) => {
-        return (typeof event === Date) ? `Down at: ${event.toLocaleTimeString()}` : event;
+        return (event instanceof Date) ? `Down at: ${event.toLocaleString()}` : event;
     };
 
     const downtimeEvents = props.history.map(downtimeEvent => {
@@ -45,7 +44,8 @@ class Button extends Component {
             downTimeEvents.push(new Date());
         } else {
             const lastDownTimeEvent = downTimeEvents[downTimeEvents.length - 1];
-            downTimeEvents[downTimeEvents.length - 1] = `${lastDownTimeEvent} - outage duration: ${calculateDurationInSeconds(new Date(), lastDownTimeEvent)}`;
+            downTimeEvents[downTimeEvents.length - 1] =
+                `${lastDownTimeEvent} - outage duration: ${Timer.toHHMMSS(calculateDurationInSeconds(new Date(), lastDownTimeEvent))}`;
         }
         this.setState({
             isUp: !this.state.isUp,
@@ -62,7 +62,7 @@ class Button extends Component {
     }
 
     handleHoverOut() {
-        if(this.state.showHistory) {
+        if (this.state.showHistory) {
             this.setState({showHistory: false})
         }
     }

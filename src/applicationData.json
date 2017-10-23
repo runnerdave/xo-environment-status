@@ -3,7 +3,7 @@
     {
       "base": {
         "title": "Information",
-        "blurb": ["Click on any of the buttons above to report a problem with the environment.",
+        "blurb": ["Click on any of the buttons below to report a problem with the environment.",
                   "Hover over an environment title to see its history."]
       }
     }

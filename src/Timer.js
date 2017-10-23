@@ -33,7 +33,12 @@ class Timer extends Component {
 
     }
 
-    toHHMMSS = function (input) {
+    /**
+     * Converts seconds to hours, minutes and seconds format.
+     * @param input seconds
+     * @returns {string}
+     */
+    static toHHMMSS = function (input) {
         let sec_num = parseInt(input, 10); // don't forget the second param
         let hours   = Math.floor(sec_num / 3600);
         let minutes = Math.floor((sec_num - (hours * 3600)) / 60);
@@ -43,7 +48,7 @@ class Timer extends Component {
         if (minutes < 10) {minutes = "0"+minutes;}
         if (seconds < 10) {seconds = "0"+seconds;}
         return hours+':'+minutes+':'+seconds;
-    }
+    };
 
     render() {
         let elapsed = Math.round(this.state.elapsed / 100);
@@ -54,7 +59,7 @@ class Timer extends Component {
         // Although we return an entire <span> element, react will smartly update
         // only the changed parts, which contain the seconds variable.
 
-        return ( <span> <em>downtime: {this.toHHMMSS(seconds)}</em></span> )
+        return ( <span> <em>downtime: {Timer.toHHMMSS(seconds)}</em></span> )
     }
 }
 
