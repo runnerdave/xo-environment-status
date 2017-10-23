@@ -2,8 +2,14 @@ import Timer from './Timer';
 import React, {Component} from 'react';
 
 const HistoryBlurb = (props) => {
+    //
+
+    const formatDowntimeHistoryEvent = (event) => {
+        return (typeof event === Date) ? `Down at: ${event.toLocaleTimeString()}` : event;
+    };
+
     const downtimeEvents = props.history.map(downtimeEvent => {
-        return <li key={downtimeEvent.valueOf()}>{downtimeEvent}</li>
+        return <li key={downtimeEvent.valueOf()}>{formatDowntimeHistoryEvent(downtimeEvent)}</li>
     });
 
     return (
@@ -31,20 +37,15 @@ class Button extends Component {
         )
     }
 
-    formatDowntimeHistoryEvent(event) {
-        return `Down at: ${event}`;
-    }
-
     handleClick() {
         let timerValue = '';
         let downTimeEvents = this.state.downTimeEvents;
         if (this.state.isUp) {
             timerValue = Button.timer();
-            downTimeEvents.push(this.formatDowntimeHistoryEvent(new Date().toLocaleTimeString()));
+            downTimeEvents.push(new Date());
         } else {
             const lastDownTimeEvent = downTimeEvents[downTimeEvents.length - 1];
-            console.log(lastDownTimeEvent);
-            downTimeEvents[downTimeEvents.length - 1] = `${lastDownTimeEvent} - outage duration: blah`;
+            downTimeEvents[downTimeEvents.length - 1] = `${lastDownTimeEvent} - outage duration: ${calculateDurationInSeconds(new Date(), lastDownTimeEvent)}`;
         }
         this.setState({
             isUp: !this.state.isUp,
@@ -82,6 +83,17 @@ class Button extends Component {
             </div>
         </div>)
     }
+}
+
+/**
+ * Calculates the duration in seconds between two dates.
+ * @param date1
+ * @param date2
+ * @returns {number}
+ */
+export function calculateDurationInSeconds(date1, date2) {
+    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    return Math.ceil(timeDiff / 1000);
 }
 
 export default Button;

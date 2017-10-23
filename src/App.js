@@ -61,7 +61,7 @@ class App extends Component {
  * Organizes rows of buttons.
  */
 export function getRows(list, buttonsPerRow) {
-    var matrix = [], i, k;
+    let matrix = [], i, k;
 
     for (i = 0, k = -1; i < list.length; i++) {
         if (i % buttonsPerRow === 0) {
@@ -74,5 +74,7 @@ export function getRows(list, buttonsPerRow) {
 
     return matrix;
 }
+
+
 
 export default App;
