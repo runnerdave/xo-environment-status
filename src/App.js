@@ -7,7 +7,7 @@ import Footer from './Footer';
 import InfoPanel from './InfoPanel';
 import SpacerRow from './SpacerRow';
 
-const BUTTONS_PER_ROW = 4;
+const BUTTONS_PER_ROW = 2;
 
 class App extends Component {
 

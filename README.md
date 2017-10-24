@@ -9,11 +9,6 @@
 ## Configuring it
 Find the `application.json` file and modify the text and buttons per environment as needed.
 
-## TODO
-* Calculate duration of outages in history
-* Calculate the Bootstrap grid properly with the Number of rows constant in App.js  
-
-
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
