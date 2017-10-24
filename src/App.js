@@ -5,16 +5,9 @@ import data from './applicationData.json';
 import Row from './Row';
 import Footer from './Footer';
 import InfoPanel from './InfoPanel';
+import SpacerRow from './SpacerRow';
 
-const BUTTONS_PER_ROW = 2;
-
-const SpacerRow = () => {
-    return (
-        <div className="row">
-            <div className="col-md-12 row-spacer"/>
-        </div>
-    )
-};
+const BUTTONS_PER_ROW = 4;
 
 class App extends Component {
 
@@ -74,7 +67,6 @@ export function getRows(list, buttonsPerRow) {
 
     return matrix;
 }
-
 
 
 export default App;

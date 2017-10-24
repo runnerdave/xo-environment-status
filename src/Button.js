@@ -1,22 +1,6 @@
 import Timer from './Timer';
 import React, {Component} from 'react';
-
-const HistoryBlurb = (props) => {
-
-    const formatDowntimeHistoryEvent = (event) => {
-        return (event instanceof Date) ? `Down at: ${event.toLocaleString()}` : event;
-    };
-
-    const downtimeEvents = props.history.map(downtimeEvent => {
-        return <li key={downtimeEvent.valueOf()}>{formatDowntimeHistoryEvent(downtimeEvent)}</li>
-    });
-
-    return (
-        <ul>
-            {downtimeEvents}
-        </ul>
-    );
-};
+import HistoryBlurb from './HistoryBlurb';
 
 class Button extends Component {
     constructor(props) {
