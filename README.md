@@ -3,6 +3,13 @@
 ## Requisites
 * create-react-app
 
+or
+
+* npm install react-scripts
+* npm install react
+* npm install react-dom
+* npm install lodash
+
 ## Running it
 * npm start
 
